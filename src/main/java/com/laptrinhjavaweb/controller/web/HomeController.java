@@ -13,18 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.impl.CategoryService;
+import com.laptrinhjavaweb.service.impl.NewService;
 
 @WebServlet(urlPatterns = {"/trang-chu"})
 public class HomeController extends HttpServlet{
 	
 	@Inject
-	private CategoryService categoryService;
+	private ICategoryService categoryService;
+	
+	@Inject
+	private NewService newService;
 	
 	private static final long serialVersionUID = 2686801510274002166L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Long categoryId = 1L;
+		request.setAttribute("news", newService.findByCategoryId(categoryId));
 		request.setAttribute("categories", categoryService.findAll());
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
 			rd.forward(request, response);
 		}

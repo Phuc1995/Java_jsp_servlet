@@ -11,11 +11,11 @@ import java.util.List;
 import com.laptrinhjavaweb.dao.ICategoryDAO;
 import com.laptrinhjavaweb.model.CategoryModel;
 
-public class CategoryDAO implements ICategoryDAO{
+public class CategoryDAO extends AbstractDAO implements ICategoryDAO{
 
 	public Connection getConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://127.0.0.1:3306/jspservletjdbc";
 			String user = "root";
 			String password= "1234";
@@ -23,9 +23,9 @@ public class CategoryDAO implements ICategoryDAO{
 			return DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return null;
 		}
-		return null;
+		
 	}
 	
 	@Override
