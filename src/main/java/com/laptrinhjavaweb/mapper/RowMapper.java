@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.mapper;
 
-public interface RowMapper {
+import java.sql.ResultSet;
 
+public interface RowMapper<T> {
+	T mapRow(ResultSet rs);
 }

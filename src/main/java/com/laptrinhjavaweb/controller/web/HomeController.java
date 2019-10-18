@@ -27,8 +27,6 @@ public class HomeController extends HttpServlet{
 	private static final long serialVersionUID = 2686801510274002166L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long categoryId = 1L;
-		request.setAttribute("news", newService.findByCategoryId(categoryId));
 		request.setAttribute("categories", categoryService.findAll());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
